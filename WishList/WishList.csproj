@@ -10,7 +10,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.0" />
   </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="tasklist /fi &quot;imagename eq iisexpress.exe&quot; |find &quot;:&quot; &gt; nul&#xD;&#xA;if errorlevel 1 taskkill /f /im &quot;iisexpress.exe&quot;" />
+  </Target>
 
 </Project>
